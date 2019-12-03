@@ -11,6 +11,7 @@ Prettier - pra deixar o código mais bonito
 Sequelize - acesso ao banco dados
 BCrypt - criptografia de senha
 JsonWebToken - criar sessão de usuário com Token
+Yup - validação de schema
 
 ## Sequelize
 
