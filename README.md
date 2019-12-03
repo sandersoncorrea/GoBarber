@@ -12,6 +12,7 @@ Projeto do BootCamp da Rocketseat NodeJS
 -   BCrypt: criptografia de senha
 -   JsonWebToken: criar sessão de usuário com Token
 -   Yup: validação de schema
+-   Multer: para envio de arquivo
 
 ## Sequelize
 
