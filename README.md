@@ -9,6 +9,8 @@ Nodemon - lib para o servidor reestartar quando o código for alterado (DevDepen
 EsLint - Unifica os modo de escrever código entre programadores
 Prettier - pra deixar o código mais bonito
 Sequelize - acesso ao banco dados
+BCrypt - criptografia de senha
+JsonWebToken - criar sessão de usuário com Token
 
 ## Sequelize
 
