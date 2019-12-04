@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { startOfHour, parseISO, isBefore, format } from 'date-fns';
+import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import Appointment from '../models/Appointment';
 import User from '../models/User';
@@ -8,7 +8,10 @@ import Notification from '../schemas/Notification';
 
 class AppointmentsController {
     async index(req, res) {
-        const { page } = req.query;
+        let { page } = req.query;
+        if (!page) {
+            page = 1;
+        }
         const appointments = await Appointment.findAll({
             where: { user_id: req.userId, canceled_at: null },
             order: ['date'],
@@ -97,6 +100,29 @@ class AppointmentsController {
             content: `Novo agendamento de ${user.name} para ${formatedDate}`,
             user: provider_id,
         });
+
+        return res.json(appointment);
+    }
+
+    async delete(req, res) {
+        const appointment = await Appointment.findByPk(req.params.id);
+
+        if (appointment.user_id !== req.userId) {
+            return res.status(401).json({
+                error: 'Você não tem permissão para apagar esse agendamento',
+            });
+        }
+
+        const dateWithSub = subHours(appointment.date, 2);
+        if (isBefore(dateWithSub, new Date())) {
+            return res.status(401).json({
+                error: 'Você já não pode mais cancelar esse agendamento',
+            });
+        }
+
+        appointment.canceled_at = new Date();
+
+        await appointment.save();
 
         return res.json(appointment);
     }
