@@ -8,12 +8,13 @@ Projeto do BootCamp da Rocketseat NodeJS
 -   Nodemon: lib para o servidor reestartar quando o código for alterado (DevDependencies)
 -   EsLint: Unifica os modo de escrever código entre programadores
 -   Prettier: pra deixar o código mais bonito
--   Sequelize: acesso ao banco dados
+-   Sequelize: ORM para acesso ao banco dados SQL
 -   BCrypt: criptografia de senha
 -   JsonWebToken: criar sessão de usuário com Token
 -   Yup: validação de schema
 -   Multer: para envio de arquivo
 -   DateFNS: lidar com datas
+-   Mongoose: ORM para acesso ao banco de dados não relacional MongoDB
 
 ## Sequelize
 
