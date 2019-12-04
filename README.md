@@ -15,6 +15,8 @@ Projeto do BootCamp da Rocketseat NodeJS
 -   Multer: para envio de arquivo
 -   DateFNS: lidar com datas
 -   Mongoose: ORM para acesso ao banco de dados não relacional MongoDB
+-   NodeMailer: para envio de email
+-   MailTrap: plataforma online para teste de recebimento de email
 
 ## Sequelize
 
