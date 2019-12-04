@@ -13,6 +13,7 @@ Projeto do BootCamp da Rocketseat NodeJS
 -   JsonWebToken: criar sessão de usuário com Token
 -   Yup: validação de schema
 -   Multer: para envio de arquivo
+-   DateFNS: lidar com datas
 
 ## Sequelize
 
