@@ -47,6 +47,14 @@ class AppointmentsController {
         const isProvider = await User.findOne({
             where: { id: provider_id, provider: true },
         });
+
+        if (provider_id === req.userId) {
+            return res.status(401).json({
+                error:
+                    'Sei que você é um profissional excelente, mas mão é permitido marcar um agendamento com você mesmo(a)',
+            });
+        }
+
         if (!isProvider) {
             return res.status(401).json({
                 error: 'Só é permitido criar agendamentos com profissionais',
