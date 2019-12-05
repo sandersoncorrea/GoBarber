@@ -6,7 +6,8 @@ import User from '../models/User';
 import File from '../models/File';
 import Notification from '../schemas/Notification';
 
-import Mail from '../../lib/mail';
+import CancellationMail from '../jobs/CancellationMail';
+import Queue from '../../lib/Queue';
 
 class AppointmentsController {
     async index(req, res) {
@@ -45,7 +46,10 @@ class AppointmentsController {
         });
 
         if (!(await schema.isValid(req.body))) {
-            return res.status(400).json({ error: 'Inválido' });
+            return res.status(400).json({
+                error:
+                    'Dados inválidos { provider_id: 0, date: 0000-00-00T00:00:00-00:00}',
+            });
         }
 
         const { provider_id, date } = req.body;
@@ -128,6 +132,12 @@ class AppointmentsController {
             });
         }
 
+        if (appointment.canceled_at !== null) {
+            return res.status(401).json({
+                error: 'Este agendamento já foi cancelado',
+            });
+        }
+
         const dateWithSub = subHours(appointment.date, 2);
         if (isBefore(dateWithSub, new Date())) {
             return res.status(401).json({
@@ -139,19 +149,8 @@ class AppointmentsController {
 
         await appointment.save();
 
-        await Mail.sendMail({
-            to: `${appointment.provider.name} <${appointment.provider.email}>`,
-            subject: 'Agendamento cancelado',
-            template: 'cancellation',
-            context: {
-                provider: appointment.provider.name,
-                user: appointment.user.name,
-                date: format(
-                    appointment.date,
-                    "'dia' dd 'de' MMMM', às' H:mm'h'",
-                    { locale: pt }
-                ),
-            },
+        await Queue.add(CancellationMail.key, {
+            appointment,
         });
 
         return res.json(appointment);

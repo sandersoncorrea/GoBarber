@@ -1,4 +1,6 @@
-# GoBarber
+<h1 align="center">
+  GoBarber v1
+</h1>
 
 Projeto do BootCamp da Rocketseat NodeJS
 
