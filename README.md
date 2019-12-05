@@ -4,7 +4,7 @@
 
 Projeto do BootCamp da Rocketseat NodeJS
 
-## Libs e configurações usadas
+## :mag_right: Libs e configurações usadas
 
 -   Sucrase: lib para poder usar 'import' e 'export' no NodeJS (DevDependencies)
 -   Nodemon: lib para o servidor reestartar quando o código for alterado (DevDependencies)
@@ -23,7 +23,7 @@ Projeto do BootCamp da Rocketseat NodeJS
 -   DotEnv: lib para acessar variaveis ambiente no .env
 -   Sentry: plataforma para receber os erros e domcumentar
 
-## Sequelize
+### :page_with_curl: Sequelize
 
 **Migration**
 
