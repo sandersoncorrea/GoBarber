@@ -1,4 +1,3 @@
-// require('dotenv/config');
 require('../bootstrap');
 
 module.exports = {
@@ -11,6 +10,6 @@ module.exports = {
     define: {
         timestamps: true,
         underscored: true,
-        undersscoredAll: true,
+        underscoredAll: true,
     },
 };

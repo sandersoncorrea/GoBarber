@@ -7,7 +7,9 @@
         "suc": "yarn sucrase-node src/server.js",
         "dev": "nodemon src/server.js",
         "queue": "nodemon src/queue.js",
+        "pretest": "NODE_ENV=test sequelize db:migrate",
         "test": "NODE_ENV=test jest",
+        "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
         "testWindows": "set NODE_ENV=test jest"
     },
     "dependencies": {
@@ -42,6 +44,7 @@
         "jest": "^24.9.0",
         "nodemon": "^2.0.1",
         "prettier": "^1.19.1",
+        "sqlite3": "^4.1.1",
         "sucrase": "^3.10.1"
     }
 }
